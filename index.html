@@ -547,7 +547,8 @@
         .mp-locate { position: absolute; right: 14px; bottom: 18px; z-index: 1001; width: 46px; height: 46px; border-radius: 999px; background: #fff; color: #0b4f56; box-shadow: 0 3px 10px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; }
         .mp-locate svg { width: 24px; height: 24px; }
         .mp-loading { position: absolute; inset: 0; z-index: 1002; display: flex; align-items: center; justify-content: center; background: #eef1f2; color: #555; font-size: 14px; }
-        .mp-shop { transform: translate(-50%, -50%); white-space: nowrap; background: #0b4f56; color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,.3); border: 2px solid #fff; display: inline-block; }
+        .mp-shop::before { content: ""; position: absolute; left: 50%; top: -14px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: #0b4f56; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+        .mp-shop { position: relative; transform: translate(-50%, 12px); white-space: nowrap; background: #0b4f56; color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,.3); border: 2px solid #fff; display: inline-block; }
         .mp-foot { padding: 12px 14px calc(env(safe-area-inset-bottom,0px) + 14px); border-top: 1px solid #eee; background: #fff; }
         .mp-status { font-size: 13px; font-weight: 700; text-align: center; padding: 8px; border-radius: 10px; margin-bottom: 10px; white-space: pre-line; }
         .mp-status.ok { background: #ECFDF5; color: #065F46; } .mp-status.out { background: #FFF7ED; color: #9A3412; }
@@ -625,7 +626,9 @@
         .ord-warn { margin:0; color:#B45309; font-size:13.5px; font-weight:700; }
         .ord-btn { width:100%; min-height:52px; border-radius:14px; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; gap:10px; border:0; }
         .ord-btn:disabled { opacity:.6; }
-        .ord-line { background:#fff; color:#06C755; box-shadow: inset 0 0 0 2px #06C755; font-size:15px; min-height:48px; }
+        .ord-line { background:#06C755; color:#fff; font-size:16px; min-height:50px; }
+        .ord-line-ico { background:#fff !important; color:#06C755 !important; }
+        .pay-save { display:block; margin:10px auto 4px; background:#0b4f56; color:#fff; font-weight:800; font-size:15px; border:0; border-radius:12px; padding:10px 18px; min-height:44px; }
         .ord-line-ico { background:#06C755; color:#fff; font-size:10px; font-weight:900; border-radius:6px; padding:3px 5px; letter-spacing:.3px; }
         .ord-green { background:#06C755; } .ord-orange { background:#F57C00; } .ord-teal { background:#0b4f56; }
         .ord-num { width:26px; height:26px; border-radius:7px; background:rgba(255,255,255,.28); display:inline-flex; align-items:center; justify-content:center; font-size:15px; }
@@ -1071,23 +1074,23 @@
             <div id="ord-pending">
                 <div class="ord-alert">
                     <b>⚠️ ออเดอร์ยังไม่เสร็จ</b>
-                    <div>1. กดปุ่มเขียว โอนเงินด้วย QR</div>
-                    <div>2. กดปุ่มส้ม เลือกรูปสลิปแล้วส่ง</div>
+                    <div>1. บันทึกรูป QR แล้วโอนในแอปธนาคาร</div>
+                    <div>2. กดปุ่มเขียว ส่งออเดอร์เข้า LINE แล้วส่งสลิปในแชต</div>
                 </div>
                 <div class="ord-body">
                     <div class="ord-no">ออเดอร์ #<span id="ord-no"></span> · <span id="ord-branch"></span></div>
                     <div class="ord-amt"><span>ยอดโอน</span><b id="ord-amount">฿0</b></div>
                     <p class="ord-warn">ร้านจะเริ่มทำอาหารเมื่อได้รับสลิปแล้วเท่านั้น</p>
-                    <button type="button" class="ord-btn ord-green" onclick="togglePayQr()"><span class="ord-num">1</span> โอนเงิน (ดู QR)</button>
             <!-- QR ชำระเงินของสาขา -->
-                    <div id="pay-box" class="pay-box" style="display:none">
+                    <div id="pay-box" class="pay-box">
                         <div class="pay-head">THAI QR PAYMENT · พร้อมเพย์</div>
                         <div class="pay-body">
                             <div class="pay-branch-name" id="pay-branch-name">บ้านเล สาขา</div>
                             <div class="pay-amount-label">ยอดที่ต้องโอน</div>
                             <div class="pay-amount" id="pay-amount">฿0</div>
                             <img id="pay-qr" alt="QR Code ชำระเงิน" class="pay-qr">
-                            <div class="pay-tip">แคปหน้าจอ แล้วเปิดแอปธนาคาร › สแกนจากรูปภาพ<br>(ผู้โอนเป็นผู้ใส่จำนวนเงินเอง)</div>
+                            <button type="button" class="pay-save" onclick="saveQrImage()">⬇︎ บันทึกรูป QR ลงเครื่อง</button>
+                            <div class="pay-tip">บันทึกรูป (หรือกดค้างที่ QR › บันทึกรูปภาพ)<br>แล้วเปิดแอปธนาคาร › สแกน › เลือกจากรูปภาพ</div>
                             <div class="pay-rows">
                                 <div><span>ชื่อบัญชี</span><b id="pay-holder"></b></div>
                                 <div><span>ธนาคาร</span><b id="pay-bank"></b></div>
@@ -1095,14 +1098,14 @@
                                 <div id="pay-ref-row"><span>อ้างอิง</span><b id="pay-ref" class="text-[11px]"></b></div>
                             </div>
                         </div>
-                        <div class="pay-warn">โอนแล้วกรุณา <b>ส่งสลิปในแชต LINE</b> ร้านจะเริ่มทำอาหารเมื่อได้รับสลิป</div>
+                        <div class="pay-warn">โอนแล้ว กดปุ่ม <b>ส่งออเดอร์เข้า LINE ร้าน</b> ด้านล่าง แล้วส่งสลิปในแชต — ร้านจะเริ่มทำอาหารเมื่อได้รับสลิป</div>
                     </div>
         
         
-                    <button type="button" class="ord-btn ord-orange" id="btn-slip" onclick="document.getElementById('slip-input').click()"><span class="ord-num">2</span> แนบสลิป ส่งให้ร้าน</button>
+                    <button type="button" class="ord-btn ord-orange" id="btn-slip" style="display:none" onclick="document.getElementById('slip-input').click()"><span class="ord-num">2</span> แนบสลิป ส่งให้ร้าน</button>
                     <input type="file" id="slip-input" accept="image/*" hidden onchange="sendSlip(this)">
-                    <button type="button" class="ord-btn ord-line" id="btn-line-order" onclick="sendOrderToLineChat()"><span class="ord-line-ico">LINE</span> ส่งเลขออเดอร์เข้าแชต LINE ร้าน</button>
-                    <p class="ord-status" id="line-hint" style="margin-top:-4px">หรือกดปุ่มนี้ แล้วโอนเงิน/ส่งสลิปในแชต LINE ได้เลย</p>
+                    <button type="button" class="ord-btn ord-line" id="btn-line-order" onclick="sendOrderToLineChat()"><span class="ord-line-ico">LINE</span> ส่งออเดอร์เข้า LINE ร้าน</button>
+                    <p class="ord-status" id="line-hint" style="margin-top:-4px">ร้านจะตอบใบยืนยันในแชต — ส่งรูปสลิปในแชตได้เลย</p>
                     <p id="ord-status" class="ord-status"></p>
                     <div id="ord-fallback" style="display:none">
                         <p class="ord-status" id="result-modal-subtitle"></p>
@@ -1122,6 +1125,7 @@
                     <hr>
                     <div id="rc-sum" class="ord-sub"></div>
                     <div class="ord-paid">💰 ยอดโอน <b id="rc-total"></b> บาท</div>
+                    <div id="rc-slip-box" style="display:none;margin-top:10px"><div class="ord-sub" style="font-weight:700">🧾 สลิปที่ส่งให้ร้าน</div><img id="rc-slip" alt="สลิปโอนเงิน" style="width:100%;max-height:340px;object-fit:contain;border-radius:12px;background:#fff;margin-top:6px"></div>
                     <p class="ord-sub" id="rc-note">ร้านกำลังเช็กยอดและเริ่มทำอาหารให้ หากมีปัญหาร้านจะโทรกลับ</p>
                 </div>
                 <button type="button" class="ord-btn ord-line" onclick="sendOrderToLineChat()" style="margin:0 16px 10px;width:calc(100% - 32px)"><span class="ord-line-ico">LINE</span> ส่งเลขออเดอร์เข้าแชต LINE</button>
@@ -2423,7 +2427,8 @@
             document.querySelectorAll('.mp-branch').forEach(e => e.textContent = currentBranch.short);
             const lat0 = parseFloat(document.getElementById('gps-lat').value);
             const lng0 = parseFloat(document.getElementById('gps-lng').value);
-            const hasPin = !isNaN(lat0) && !isNaN(lng0);
+            // หมุดเก่าที่อยู่ติดร้าน (<80 ม.) ไม่นับ — ต้องเป็นบ้านลูกค้าเท่านั้น
+            const hasPin = !isNaN(lat0) && !isNaN(lng0) && distanceKm(currentBranch.lat, currentBranch.lng, lat0, lng0) >= 0.08;
             const start = hasPin ? [lat0, lng0] : [currentBranch.lat, currentBranch.lng];
             loadLeaflet().then(() => {
                 document.getElementById('mp-loading').style.display = 'none';
@@ -2442,7 +2447,7 @@
                 }).addTo(mpMap);
                 mpBranchMarker = L.marker([currentBranch.lat, currentBranch.lng], {
                     interactive: false,
-                    icon: L.divIcon({ className: '', iconSize: [0, 0], html: `<div class="mp-shop">🏠 ${currentBranch.short}</div>` })
+                    icon: L.divIcon({ className: '', iconSize: [0, 0], html: `<div class="mp-shop">🏪 ร้าน${currentBranch.short}</div>` }), zIndexOffset: -1000
                 }).addTo(mpMap);
                 mpReady = hasPin; mpMsg = hasPin ? '' : '📍 กำลังหาตำแหน่งของคุณ...';
                 setTimeout(() => { mpMap.invalidateSize(); mpUpdateStatus(); }, 60);
@@ -2488,6 +2493,12 @@
                 st.className = 'mp-status out';
                 st.textContent = mpMsg || '📍 กำลังหาตำแหน่งของคุณ...';
                 btn.disabled = true; btn.textContent = 'รอตำแหน่ง หรือลากแผนที่ไปที่บ้านคุณ';
+                return;
+            }
+            if (km < 0.08) {             // หมุดยังอยู่ที่ร้าน → ไม่ใช่บ้านลูกค้า
+                st.className = 'mp-status out';
+                st.textContent = 'หมุดยังอยู่ที่ร้าน — ลากแผนที่ให้หมุดแดงอยู่ที่บ้านของคุณ\nหรือกดปุ่ม ⌖ เพื่อใช้ตำแหน่งมือถือ';
+                btn.disabled = true; btn.textContent = 'ปักหมุดที่บ้านของคุณก่อน';
                 return;
             }
             st.className = 'mp-status ' + (ok ? 'ok' : 'out');
@@ -2723,7 +2734,8 @@
             document.getElementById('ord-no').textContent = info.orderNo;
             document.getElementById('ord-branch').textContent = info.branchName;
             document.getElementById('ord-amount').textContent = '฿' + Number(info.total || 0).toLocaleString('th-TH');
-            document.getElementById('pay-box').style.display = 'none';
+            document.getElementById('pay-box').style.display = '';
+            document.getElementById('rc-slip-box').style.display = 'none';
             document.getElementById('ord-pending').style.display = '';
             document.getElementById('ord-done').style.display = 'none';
             document.getElementById('btn-slip').disabled = false;
@@ -2733,7 +2745,7 @@
             document.getElementById('result-order-text').value = text;
             document.getElementById('result-modal-subtitle').innerText = subtitle || '';
             document.getElementById('ord-fallback').style.display = sentAuto ? 'none' : '';
-            document.getElementById('btn-slip').style.display = sentAuto ? '' : 'none';
+            document.getElementById('btn-slip').style.display = 'none';   // แนบสลิปผ่านแชต LINE แทน
             const showLine = !!(STORE_CONFIG.lineOaId && !info.demo);
             document.getElementById('btn-line-order').style.display = showLine ? '' : 'none';
             document.getElementById('line-hint').style.display = showLine ? '' : 'none';
@@ -2745,6 +2757,7 @@
         function sendOrderToLineChat() {
             if (!currentOrder || !STORE_CONFIG.lineOaId) return;
             const text = `🧾 สั่งออเดอร์ ${currentOrder.orderNo}`;
+            currentOrder.lineSent = true;
             window.location.href = `https://line.me/R/oaMessage/${encodeURIComponent(STORE_CONFIG.lineOaId)}/?${encodeURIComponent(text)}`;
         }
 
@@ -2761,6 +2774,42 @@
             document.getElementById('btn-line-order').style.display = 'none';
             document.getElementById('line-hint').style.display = 'none';
             history.replaceState(null, '', location.pathname);
+        }
+
+        // บันทึกรูป QR (พร้อมยอดเงิน/สาขา) ลงเครื่อง — iPhone/Android เปิดเมนูแชร์ › บันทึกรูปภาพ
+        function saveQrImage() {
+            const qr = document.getElementById('pay-qr');
+            if (!qr || !qr.src) return;
+            const pay = currentBranch.pay || {}, W = 600, H = 860;
+            const c = document.createElement('canvas'); c.width = W; c.height = H;
+            const g = c.getContext('2d');
+            g.fillStyle = '#fff'; g.fillRect(0, 0, W, H);
+            g.fillStyle = '#0b3a5c'; g.fillRect(0, 0, W, 70);
+            g.textAlign = 'center'; g.fillStyle = '#fff'; g.font = 'bold 26px "LINE Seed Sans TH", sans-serif';
+            g.fillText('THAI QR PAYMENT · พร้อมเพย์', W / 2, 46);
+            g.fillStyle = '#0b4f56'; g.font = 'bold 30px "LINE Seed Sans TH", sans-serif';
+            g.fillText(currentBranch.name, W / 2, 125);
+            g.fillStyle = '#6b7280'; g.font = '22px "LINE Seed Sans TH", sans-serif';
+            g.fillText('ยอดที่ต้องโอน' + (currentOrder ? ' · ออเดอร์ ' + currentOrder.orderNo : ''), W / 2, 165);
+            g.fillStyle = '#0b3a5c'; g.font = 'bold 64px "LINE Seed Sans TH", sans-serif';
+            g.fillText('฿' + Number(lastGrandTotal || 0).toLocaleString('th-TH'), W / 2, 235);
+            g.drawImage(qr, (W - 420) / 2, 260, 420, 420);
+            g.fillStyle = '#374151'; g.font = 'bold 24px "LINE Seed Sans TH", sans-serif';
+            g.fillText((pay.holder || '') + (pay.bank ? ' · ' + pay.bank : ''), W / 2, 725);
+            if (pay.account) { g.font = '24px "LINE Seed Sans TH", sans-serif'; g.fillText('เลขที่บัญชี ' + pay.account, W / 2, 762); }
+            g.fillStyle = '#B45309'; g.font = '20px "LINE Seed Sans TH", sans-serif';
+            g.fillText('โอนแล้วส่งสลิปให้ร้าน · บ้านเล Seafood & Café', W / 2, 820);
+            const name = 'QR-บ้านเล-' + (currentOrder ? currentOrder.orderNo : 'pay') + '.png';
+            c.toBlob(blob => {
+                const file = new File([blob], name, { type: 'image/png' });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    navigator.share({ files: [file], title: 'QR โอนเงิน บ้านเล' }).catch(() => {});
+                } else {
+                    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+                    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+                    showToast('บันทึกรูป QR แล้ว');
+                }
+            }, 'image/png');
         }
 
         function togglePayQr() {
@@ -2784,18 +2833,20 @@
             });
         }
 
+        let lastSlipUrl = '';
         function sendSlip(input) {
             const file = input.files && input.files[0]; input.value = '';
             if (!file || !currentOrder) return;
             const btn = document.getElementById('btn-slip'), st = document.getElementById('ord-status');
             btn.disabled = true; st.className = 'ord-status'; st.textContent = 'กำลังส่งสลิปให้ร้าน...';
             shrinkImage(file).then(dataUrl => {
+                lastSlipUrl = dataUrl;
                 if (currentOrder.demo || !STORE_CONFIG.apiUrl) return new Promise(r => setTimeout(r, 700));
                 return fetch(STORE_CONFIG.apiUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({ action: 'slip', orderNo: currentOrder.orderNo, dataUrl: dataUrl }) })
                     .then(r => r.json()).then(j => { if (!j.ok) throw new Error(j.error || 'ส่งไม่สำเร็จ'); });
             }).then(() => {
-                currentOrder.slipSent = true; showReceipt(currentOrder);
+                currentOrder.slipSent = true; currentOrder.slipUrl = lastSlipUrl; showReceipt(currentOrder);
             }).catch(e => {
                 btn.disabled = false; st.className = 'ord-status err';
                 st.textContent = 'ส่งสลิปไม่สำเร็จ (' + (e.message || 'ลองใหม่') + ') — กดปุ่มส้มอีกครั้ง หรือส่งสลิปในแชต LINE ของร้าน';
@@ -2812,14 +2863,16 @@
             document.getElementById('rc-sum').textContent = !qty ? '' : `รวม ${qty} รายการ · ` + (o.mode === 'delivery' ? (o.fee ? `ค่าส่ง ${o.fee}฿` : 'ค่าส่ง ฟรี') : 'รับที่ร้าน');
             document.getElementById('rc-total').textContent = Number(o.total || 0).toLocaleString('th-TH');
             document.getElementById('rc-note').textContent = o.demo ? '(ตัวอย่าง — ยังไม่ได้ส่งถึงร้านจริง)' : 'ร้านกำลังเช็กยอดและเริ่มทำอาหารให้ หากมีปัญหาร้านจะโทรกลับ';
+            const sb = document.getElementById('rc-slip-box');
+            if (o.slipUrl) { document.getElementById('rc-slip').src = o.slipUrl; sb.style.display = ''; } else sb.style.display = 'none';
             document.getElementById('ord-pending').style.display = 'none';
             document.getElementById('ord-done').style.display = '';
             document.querySelector('#result-modal .ord-sheet').scrollTop = 0;
         }
 
         function closeResultModal() {
-            if (currentOrder && !currentOrder.slipSent && document.getElementById('btn-slip').style.display !== 'none' &&
-                !confirm('ยังไม่ได้แนบสลิป — ร้านจะยังไม่เริ่มทำอาหาร\nปิดหน้านี้เลยไหม?')) return;
+            if (currentOrder && !currentOrder.lineSent && !currentOrder.demo && document.getElementById('btn-line-order').style.display !== 'none' &&
+                !confirm('ยังไม่ได้ส่งออเดอร์เข้า LINE ร้าน — ร้านจะยังไม่เริ่มทำอาหารจนกว่าได้รับสลิป\nปิดหน้านี้เลยไหม?')) return;
             document.getElementById('result-modal').classList.add('hidden');
         }
 
