@@ -363,18 +363,19 @@
         @keyframes pc-pop { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.03); } }
         /* ---------- หัวเว็บ: โปรส่งฟรี + มือถือ ---------- */
         .hero2 { background: linear-gradient(135deg, #0f7f86 0%, #0b5f66 45%, #083b40 100%); }
-        .h2-inner { position: relative; max-width: 28rem; margin: 0 auto; height: 172px; overflow: hidden; }
-        .h2-sky { position: absolute; left: 0; bottom: 0; width: 72%; height: 70%; color: rgba(4, 40, 44, .45); }
+        .h2-inner { position: relative; max-width: 28rem; margin: 0 auto; height: 184px; overflow: hidden; }
+        .h2-sky { position: absolute; left: 0; bottom: 0; width: 82%; height: 100%; color: rgba(3, 34, 38, .72); }
         .h2-road {
             position: absolute; left: -10%; right: -10%; bottom: -48px; height: 70px;
             background: #eef2f2; transform: rotate(-9deg); transform-origin: left bottom;
             box-shadow: 0 -3px 0 rgba(255,255,255,.35);
         }
         .h2-road span { position: absolute; left: 0; right: 0; top: 20px; height: 0; border-top: 4px dashed #c9d3d4; }
-        .h2-text { position: absolute; left: 14px; top: 13px; z-index: 4; }
+        .h2-text { position: absolute; left: 14px; top: 18px; z-index: 4; }
+        .h2-row { display: flex; align-items: center; gap: 8px; }
         .h2-small {   /* สไตล์ "สั่งตอนนี้": ตัวหนาเอียง สีเข้ม ขอบขาว */
             display: inline-block; font-size: 19px; font-weight: 900; line-height: 1.1; letter-spacing: -.3px;
-            color: #062f33; transform: skewX(-10deg); margin-left: 4px;
+            color: #062f33; transform: rotate(-4deg) skewX(-10deg); transform-origin: left bottom; margin-left: 6px;
             -webkit-text-stroke: 5px #fff; paint-order: stroke fill;
             text-shadow: 0 3px 0 rgba(0,0,0,.25);
         }
@@ -386,11 +387,13 @@
         .h2-sub { color: #fff; font-size: 13px; font-weight: 700; margin-top: 6px; }
         .h2-sub b { color: #FFC93C; font-size: 16px; font-weight: 900; }
         .h2-branch {
-            position: absolute; left: 6px; top: 122px; display: inline-flex; align-items: center; gap: 6px;
-            padding: 3px 9px 3px 5px; border-radius: 999px; background: rgba(0,0,0,.35);
-            color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap;
+            position: relative; display: inline-flex; align-items: center; gap: 6px; margin: 0;
+            padding: 3px 10px 3px 5px; border-radius: 999px; background: rgba(255,255,255,.22);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); backdrop-filter: blur(2px);
+            color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap;
         }
         .h2-branch:active { transform: scale(.97); }
+        .h2-branch img { width: 16px !important; height: auto !important; flex-shrink: 0; }
         .h2-phone {
             position: absolute; right: 18px; top: 10px; width: 118px; height: 230px; z-index: 2;
             background: #eeeeee url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDQgMjE2Ij4KPHJlY3Qgd2lkdGg9IjEwNCIgaGVpZ2h0PSIyMTYiIGZpbGw9IiNlZWVlZWUiLz4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CjxwYXRoIGQ9Ik0wIDYwIEw0MCA0MCBMMTA0IDcwIi8+PHBhdGggZD0iTTEwIDAgTDMwIDEyMCBMMCAxNjAiLz48cGF0aCBkPSJNNjAgMCBMNTggNTAgTDkwIDEyMCBMMTA0IDE1MCIvPgo8cGF0aCBkPSJNMCAxOTAgTDUwIDE1MCBMMTA0IDE4MCIvPjxwYXRoIGQ9Ik00NSAyMTYgTDYwIDE0MCBMNDAgMTAwIi8+PHBhdGggZD0iTTgwIDIxNiBMNzAgMTcwIi8+CjwvZz4KPGcgZmlsbD0iI2NmY2JiNyI+PHJlY3QgeD0iNjIiIHk9IjEyIiB3aWR0aD0iMTIiIGhlaWdodD0iMjAiIHJ4PSIxIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgNjggMjIpIi8+PHJlY3QgeD0iNzIiIHk9Ijk4IiB3aWR0aD0iMTAiIGhlaWdodD0iMTYiIHRyYW5zZm9ybT0icm90YXRlKDI1IDc3IDEwNikiLz4KPHJlY3QgeD0iMTgiIHk9IjE3NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjEwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUgMjYgMTgxKSIvPjxyZWN0IHg9IjcwIiB5PSIxODAiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTI1IDc3IDE4NSkiLz48cmVjdCB4PSIxNiIgeT0iNzgiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDIxIDg1KSIvPjwvZz4KPGcgZmlsbD0iIzliZTA1YiI+PHBhdGggZD0iTTAgMCBIMTQgTDQgMTQgWiIvPjxwYXRoIGQ9Ik04MCA3MCBMMTA0IDU4IFYxMDAgTDkyIDEwNCBaIi8+PHBhdGggZD0iTTQwIDIxNiBMMTA0IDE5NiBWMjE2IFoiLz48L2c+CjxwYXRoIGQ9Ik0xMDQgMzAgQzcwIDMyIDUyIDYwIDQ0IDkwIEMzOCAxMTIgMjAgMTMwIDAgMTQwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3ZmIyZjAiIHN0cm9rZS13aWR0aD0iNSIvPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmOWMyMWIiIHN0cm9rZS13aWR0aD0iMy41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0zNCAwIEwxMDQgMTUwIi8+PHBhdGggZD0iTTAgMTY4IEw1MiAxMzAgTDEwNCAxMjQiLz48L2c+CjxwYXRoIGQ9Ik04MCA3MCBMNTYgODQgTDYwIDk2IEwyNiAxMDQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U1MzkzNSIgc3Ryb2tlLXdpZHRoPSIxLjQiLz4KPGNpcmNsZSBjeD0iODAiIGN5PSI3MCIgcj0iMi42IiBmaWxsPSIjZTUzOTM1Ii8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2IDEwNCkgc2NhbGUoLjg1KSI+PGVsbGlwc2UgY3g9IjAiIGN5PSIxIiByeD0iNiIgcnk9IjIiIGZpbGw9InJnYmEoMCwwLDAsLjIpIi8+CjxwYXRoIGQ9Ik0wIDAgQy01IC05IC0xMiAtMTQgLTEyIC0yMiBBMTIgMTIgMCAwIDEgMTIgLTIyIEMxMiAtMTQgNSAtOSAwIDAgWiIgZmlsbD0iI2Q4MWIxYiIvPgo8cGF0aCBkPSJNMCAtMyBDLTQgLTEwIC05IC0xNCAtOSAtMjEgQTkgOSAwIDAgMSAwIC0zMSBaIiBmaWxsPSIjZjA0ODQ4IiBvcGFjaXR5PSIuNTUiLz4KPGNpcmNsZSBjeD0iMCIgY3k9Ii0yMiIgcj0iNSIgZmlsbD0iI2ZmZiIvPjwvZz4KPC9zdmc+Cg==") center / 100% 100% no-repeat; border: 7px solid #111; border-radius: 26px;
@@ -413,6 +416,8 @@
         @media (prefers-reduced-motion: reduce) { .h2-rider { animation: none; } }
         /* "ส่งฟรี 5 กม." ตัวอ้วน 2 สี */
         .h2-big { display: block; overflow: visible; margin: -7px 0 0 -4px; }
+        .h2-del { margin: -6px 0 0 -4px; }
+        .h2-free { margin: -10px 0 0 -4px; }
         .h2-big use { stroke-linejoin: round; stroke-linecap: round; }
         .h2-big .hb-ex    { fill: #062f33; stroke: #062f33; stroke-width: 14px; transform: translate(2px, 6px); }
         .h2-big .hb-dark  { fill: #0a3d42; stroke: #0a3d42; stroke-width: 14px; }
@@ -680,37 +685,44 @@
 
                 <!-- ซ้าย: ข้อความโปร -->
                 <div class="h2-text">
-                    <div class="h2-small">สั่งตอนนี้</div>
+                    <div class="h2-row">
+                        <div class="h2-small">สั่งตอนนี้</div>
+                        <button type="button" onclick="openBranchModal()" aria-label="เลือกสาขา" class="h2-branch">
+                            <img src="data:image/webp;base64,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" alt="" class="h-5 w-auto">
+                            <span id="branch-label">สาขาปัตตานี</span>
+                            <span class="caret-down" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <!-- "Delivery" ตัวใหญ่เอียง ขาวขอบเข้ม + บรรทัดล่าง "ส่งฟรี 5 กม." ตัวเล็กลง -->
-                    <svg class="h2-big" viewBox="0 0 240 128" width="226" height="120" role="img" aria-label="Delivery ส่งฟรี 5 กิโลเมตร">
+                    <svg class="h2-big h2-del" viewBox="0 0 240 74" width="240" height="74" role="img" aria-label="Delivery">
+                        <defs>
+                            <g id="hb-1" font-family="'LINE Seed Sans TH', 'Poppins', sans-serif" font-weight="900">
+                                <text x="6" y="62" font-size="62" textLength="240" lengthAdjust="spacingAndGlyphs" transform="skewX(-9)" style="transform-origin:0 62px">Delivery</text>
+                            </g>
+                        </defs>
+                        <g transform="rotate(-4 120 37)">
+                            <use href="#hb-1" class="hb-ex"/><use href="#hb-1" class="hb-dark"/><use href="#hb-1" fill="#FFFFFF"/>
+                        </g>
+                    </svg>
+
+                    <svg class="h2-big h2-free" viewBox="0 0 240 48" width="226" height="45" role="img" aria-label="ส่งฟรี 5 กิโลเมตร">
                         <defs>
                             <linearGradient id="hb-or" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB74D"/><stop offset="1" stop-color="#F57C00"/></linearGradient>
                             <linearGradient id="hb-gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4DD0C8"/><stop offset="1" stop-color="#0f8a7e"/></linearGradient>
-                            <linearGradient id="hb-wh" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E3F4F2"/></linearGradient>
-                            <g id="hb-1" font-family="'LINE Seed Sans TH', 'Poppins', sans-serif" font-weight="900">
-                                <text x="6" y="66" font-size="62" textLength="240" lengthAdjust="spacingAndGlyphs" transform="skewX(-9)" style="transform-origin:0 66px">Delivery</text>
-                            </g>
                             <g id="hb-2" font-family="'LINE Seed Sans TH', sans-serif" font-weight="900">
-                                <text x="20" y="112" font-size="34">ส่งฟรี</text>
+                                <text x="12" y="38" font-size="34">ส่งฟรี</text>
                             </g>
                             <g id="hb-3" font-family="'LINE Seed Sans TH', sans-serif" font-weight="900">
-                                <text x="122" y="112" font-size="34"><tspan id="free-radius-text">5</tspan><tspan font-size="26" dx="4">กม.</tspan></text>
+                                <text x="114" y="38" font-size="34"><tspan id="free-radius-text">5</tspan><tspan font-size="26" dx="4">กม.</tspan></text>
                             </g>
                         </defs>
-                        <g transform="rotate(-4 120 64)">
-                            <use href="#hb-1" class="hb-ex"/><use href="#hb-2" class="hb-ex2"/><use href="#hb-3" class="hb-ex2"/>
-                            <use href="#hb-1" class="hb-dark"/><use href="#hb-2" class="hb-dark2"/><use href="#hb-3" class="hb-dark2"/>
+                        <g transform="rotate(-4 120 24)">
+                            <use href="#hb-2" class="hb-ex2"/><use href="#hb-3" class="hb-ex2"/>
+                            <use href="#hb-2" class="hb-dark2"/><use href="#hb-3" class="hb-dark2"/>
                             <use href="#hb-2" class="hb-white2"/><use href="#hb-3" class="hb-white2"/>
-                            <use href="#hb-1" fill="#FFFFFF"/>
-                            <use href="#hb-2" fill="url(#hb-or)"/>
-                            <use href="#hb-3" fill="url(#hb-gr)"/>
+                            <use href="#hb-2" fill="url(#hb-or)"/><use href="#hb-3" fill="url(#hb-gr)"/>
                         </g>
                     </svg>
-                    <button type="button" onclick="openBranchModal()" aria-label="เลือกสาขา" class="h2-branch">
-                        <img src="data:image/webp;base64,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" alt="" class="h-5 w-auto">
-                        <span id="branch-label">สาขาปัตตานี</span>
-                        <span class="caret-down" aria-hidden="true"></span>
-                    </button>
                 </div>
 
                 <!-- ขวา: มือถือ + โลโก้ + ไรเดอร์ -->
@@ -1455,6 +1467,8 @@
         ];
 
         const NO_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23E6F2F1%22/%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%2292%22%20r%3D%2246%22%20fill%3D%22%23fff%22%20stroke%3D%22%239cc9c5%22%20stroke-width%3D%224%22/%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%2292%22%20r%3D%2230%22%20fill%3D%22none%22%20stroke%3D%22%23cfe5e3%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M38%2060v30M30%2060v18a8%208%200%200%200%2016%200V60M38%2098v50%22%20stroke%3D%22%239cc9c5%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22/%3E%3Cpath%20d%3D%22M162%2060c-10%204-12%2022-12%2034h12v54%22%20stroke%3D%22%239cc9c5%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3Ctext%20x%3D%22100%22%20y%3D%22172%22%20text-anchor%3D%22middle%22%20font-family%3D%22sans-serif%22%20font-size%3D%2215%22%20fill%3D%22%235f9c97%22%3E%E0%B8%A3%E0%B8%AD%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%80%E0%B8%A1%E0%B8%99%E0%B8%B9%3C/text%3E%3C/svg%3E";
+        // ลิงก์รูปจาก Google Drive → แบบที่เปิดได้ทุกเครื่อง (lh3)
+        const fixImg = u => { const m = String(u || '').match(/drive\.google\.com\/(?:thumbnail\?id=|uc\?(?:.*&)?id=|file\/d\/|open\?id=)([\w-]+)/); return m ? 'https://lh3.googleusercontent.com/d/' + m[1] + '=w600' : (u || ''); };
         const imgOf = item => item.image || NO_IMG;
         let MENU_ITEMS = [
     {
@@ -2063,7 +2077,7 @@
                     if (!j.ok || !Array.isArray(j.items) || !j.items.length) return;
                     MENU_ITEMS = j.items.map(m => ({
                         id: m.id, name: m.name, price: Number(m.price) || 0, desc: m.desc || '',
-                        image: m.image || '', category: m.category || 'single_dish',
+                        image: fixImg(m.image), category: m.category || 'single_dish',
                         isBestseller: Number(m.bestsellerRank) > 0, bestsellerRank: Number(m.bestsellerRank) || 0,
                         hasOptions: false, optionGroups: [], soldout: m.soldout || []
                     }));
